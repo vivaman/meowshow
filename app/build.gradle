@@ -1,0 +1,59 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
+
+android {
+    compileSdkVersion 22
+    buildToolsVersion "22.0.1"
+
+    aaptOptions {
+        useNewCruncher false
+    }
+
+    defaultConfig {
+        applicationId "io.viva.meowshow"
+        minSdkVersion 14
+        targetSdkVersion 22
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile project(':domain')
+
+    // Google libraries
+    compile 'com.android.support:appcompat-v7:22.1.1'
+    compile 'com.android.support:support-v4:22.1.1'
+    compile 'com.android.support:cardview-v7:21.0.3'
+    compile 'com.android.support:recyclerview-v7:21.0.3'
+    compile 'com.android.support:palette-v7:21.0.0'
+    compile 'com.android.support:support-v13:21.0.3'
+
+    // Dagger compiler
+    compile 'org.glassfish:javax.annotation:10.0-b28'
+    apt 'com.google.dagger:dagger-compiler:2.0'
+    compile 'com.google.dagger:dagger:2.0'
+
+    androidTestCompile 'com.android.support.test:testing-support-lib:0.1'
+    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.0'
+    androidTestCompile ('com.android.support.test.espresso:espresso-contrib:2.0') {
+        exclude module: 'support-annotations'
+    }
+
+    // Square libraries
+    compile 'com.squareup.retrofit:retrofit:1.9.0'
+    compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'com.squareup:otto:1.3.8'
+    compile 'com.squareup.okhttp:okhttp:2.4.0'
+    compile 'com.jakewharton:butterknife:6.0.0'
+
+    // Third party libraries
+    compile 'com.nispok:snackbar:2.9.1'
+}
